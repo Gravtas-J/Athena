@@ -95,7 +95,7 @@ def main():
         Grading_report_neutral = [{'role': 'system', 'content': open_file(Neutral_AI)}, {'role': 'user', 'content': st.session_state.get('Guide-Assessment', '')}]
         report_neutral, total_tokens = chatbotGPT4(Grading_report_neutral)
 
-        Grading_combined = f"Forgiving Teacher: \n\n{report_forgiving}\n\n\n\ Harsh teacher:\n\n{report_harsh}\n\n\n Neutral Report:\n\n{report_neutral}"
+        Grading_combined = f"First Teacher:\n\n{report_forgiving}\n\nSecond teacher:\n\n{report_harsh}\n\nThird Teacher:\n\n{report_neutral}"
 
         Grades_Submission = f"{combined_content}\n\n\n\{Grading_combined}"
 
@@ -104,7 +104,7 @@ def main():
         Grading_report = [{'role': 'system', 'content': open_file(Combiner)}, {'role': 'user', 'content': st.session_state.get('combiner', '')}]
         report_final, total_tokens = chatbotGPT4(Grading_report)
 
-        Student_report = f"{assessment_content} \n\n\n\{Grading_combined}\n\n\n{report_final}"
+        Student_report = f"{assessment_content} \n\n\n\{Grading_combined}\n\n\nFinal Grading Report\n\n{report_final}"
 
         st.sidebar.download_button(
             label="Download Report",
@@ -112,7 +112,7 @@ def main():
             file_name=f'Grading Report- {current_time}.txt',
             mime="text/plain"
         )
-    st.sidebar.write("This will generate The Hypothesis, Clinical Assessment Guide and a list of Referral Recomendations")
+    st.sidebar.write("This will generate grade recomendation for the Student's Submission based off of the criteria given.")
     for _ in range(13
     ):  
         st.sidebar.write("")    
