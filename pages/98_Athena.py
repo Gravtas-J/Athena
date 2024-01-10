@@ -117,21 +117,24 @@ def main():
     ):  
         st.sidebar.write("")    
 
-# Initialize session states if they don't exist
-if 'Norna_logged_in' not in st.session_state:
-    st.session_state.Norna_logged_in = False
-
-if 'Norna_user_id' not in st.session_state:
-    st.session_state.Norna_user_id = None
-
-# If user is not logged in, show the login button
-if not st.session_state.Norna_logged_in:
-    user_info = login_button(clientId=clientId, domain=domain)
-    if user_info:
-        st.session_state.Norna_logged_in = True
-        st.session_state.Norna_user_id = user_info.get('sub', None)  # Assuming 'sub' is a unique identifier for the user
-        st.experimental_rerun()
-        main()
-elif st.session_state.Norna_user_id:
-    # If user is already logged in, greet them
+if __name__ == '__main__':
     main()
+
+# # Initialize session states if they don't exist
+# if 'Norna_logged_in' not in st.session_state:
+#     st.session_state.Norna_logged_in = False
+
+# if 'Norna_user_id' not in st.session_state:
+#     st.session_state.Norna_user_id = None
+
+# # If user is not logged in, show the login button
+# if not st.session_state.Norna_logged_in:
+#     user_info = login_button(clientId=clientId, domain=domain)
+#     if user_info:
+#         st.session_state.Norna_logged_in = True
+#         st.session_state.Norna_user_id = user_info.get('sub', None)  # Assuming 'sub' is a unique identifier for the user
+#         st.experimental_rerun()
+#         main()
+# elif st.session_state.Norna_user_id:
+#     # If user is already logged in, greet them
+#     main()
